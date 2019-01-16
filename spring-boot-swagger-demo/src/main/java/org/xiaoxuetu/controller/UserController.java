@@ -4,6 +4,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,10 @@ public class UserController {
     @ApiImplicitParams({
         // 注意这里必须设置example="0"，否则打开首页的时候swagger会发个空字符串回来，控制台报数字转换异常
         @ApiImplicitParam(paramType = "path", dataType = "long", name = "id", value = "主键", example="0", required = true)
+    })
+    @ApiResponses(value = {
+        @ApiResponse(code = 403, message = "用户没有权限"),
+        @ApiResponse(code = 400, message = "参数无效")
     })
     public User restfulGet(@PathVariable long id) {
         return User.builder()
