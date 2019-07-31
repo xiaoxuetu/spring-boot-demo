@@ -2,3 +2,6 @@
 *.iml
 target/
 .mvn/
+.DS_Store
+mvnw.cmd
+mvnw
